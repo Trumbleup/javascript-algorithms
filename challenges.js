@@ -1,3 +1,19 @@
+// Reverse a String 
+
+function reverseString(str) {
+  const strArray = str.split("");
+  const reverseStrArray = strArray.reverse();
+  const newStrArray = [];
+  
+  reverseStrArray.forEach( i => newStrArray.push(i) )
+
+  return newStrArray.join("");
+}
+
+console.log(reverseString("hello"));
+
+
+
 // Basic Algorithm Scripting: Factorialize a Number
 
 function factorialize(num) {
