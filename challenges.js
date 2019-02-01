@@ -32,11 +32,18 @@ factorialize(5);
 // Your response should be a number.
 
 function findLongestWordLength(str) {
- 
- let stringArray = str.split(" ")
- let sortArray = stringArray.sort((a, b) => {return b.length - a.length})  
- let stringVal = sortArray[0].length;
- return stringVal
+  const strArray = str.split(" ");
+  let longestWord = "";
+
+  strArray.forEach( val => {
+    
+    if (val.length > longestWord.length) {
+      longestWord = val
+    }
+  }
+)
+
+  return longestWord.length;
 }
 
 findLongestWordLength("The quick brown fox jumped over the lazy dog");
@@ -44,17 +51,21 @@ findLongestWordLength("The quick brown fox jumped over the lazy dog");
 // Basic Algorithm Scripting: Return Largest Numbers in Arrays
 
 function largestOfFour(arr) {
-  let newArr = [];
-  for (let i = 0 ; i < arr.length ; i++) {
-    let val = arr[i][0]
-    for (let j = 0 ; j < arr[i].length ; j++) {
-      while (val < arr[i][j]) {
-        val = arr[i][j];
+  // You can do this!
+  let largestNumArray = [];
+
+  for (let i = 0 ; i < arr.length ; i++ ) {
+    let subLargeNum = arr[i][0];
+    for(let j = 0 ; j < arr[i].length ; j++ ) {
+      if (arr[i][j] > subLargeNum ) {
+        subLargeNum = arr[i][j];
       }
     }
-    newArr.push(val)
+    largestNumArray.push(subLargeNum)
   }
-  return newArr;
+
+
+  return largestNumArray;
 }
 
 largestOfFour([[4, 5, 1, 3], [13, 27, 18, 26], [32, 35, 37, 39], [1000, 1001, 857, 1]]);
@@ -63,12 +74,19 @@ largestOfFour([[4, 5, 1, 3], [13, 27, 18, 26], [32, 35, 37, 39], [1000, 1001, 85
 
 // Check if a string (first argument, str) ends with the given target string (second argument, target).
 function confirmEnding(str, target) {
-  let targetEndVal = target.length
-  let strEndVal = str.substring(str.length-targetEndVal);
-  if (strEndVal === target) {
+  // "Never give up and good luck will find you."
+  // -- Falcor
+
+  const strEnding = str.slice(str.length - target.length)
+
+  if (strEnding === target){
     return true
   }
-  return false;
+  else {
+    return false
+  }
+
+  return strEnding;
 }
 
 confirmEnding("Bastian", "n");
@@ -78,16 +96,12 @@ confirmEnding("Bastian", "n");
 // Return an empty string if num is not a positive number.
 
 function repeatStringNumTimes(str, num) {
-  let newStr = str;
-  let initial = 1;
-  let strArr = [];
-  
-  while (initial <= num) {
-    strArr.push(newStr);
-    initial++;
+  // repeat after me
+  let newStringArr = [];
+  for (let i = 1 ; i <= num ; i++) {
+    newStringArr.push(str)
   }
-
-  return strArr.join("");
+  return newStringArr.join('');
 }
 
 repeatStringNumTimes("abc", 3);
@@ -122,13 +136,19 @@ truncateString("A-tisket a-tasket A green and yellow basket", 8);
 
 function findElement(arr, func) {
   let num = 0;
-  for ( let i = 0 ; i < arr.length ; i++) {
-    num = arr[i];
-    if (func(num)) {
-      return num;
+
+  for (let i = 0 ; i < arr.length ; i++) {
+    if (func(arr[i])){
+      num = arr[i];
+      break
+    }
+    else if (!func(arr[arr.length-1])) {
+      return undefined
     }
   }
-  return undefined;
+
+  return num
+
 }
 
 findElement([1, 2, 3, 4], num => num % 2 === 0);
@@ -152,14 +172,10 @@ booWho(null);
 // capitalize connecting words like "the" and "of".
 
 function titleCase(str) {
-  let strLow = str.toLowerCase().split(" ");
-  let newStr = "";
-  let strArr = []; 
-  for (let i = 0 ; i < strLow.length ; i++) {
-    newStr = strLow[i].replace(strLow[i].charAt(0), strLow[i].charAt(0).toUpperCase());
-    strArr.push(newStr)
-  }
-  return strArr.join(" ");
+  const lowerCaseStr = str.toLowerCase();
+  const strArray = lowerCaseStr.split(" ");
+  const newStrArray = strArray.map(i => i.replace(i.charAt(0), i.charAt(0).toUpperCase()))
+  return newStrArray.join(" ");
 }
 
 titleCase("I'm a little tea pot");
