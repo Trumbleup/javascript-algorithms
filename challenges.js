@@ -220,6 +220,16 @@ function bouncer(arr) {
 
 bouncer([7, "ate", "", false, 9]);
 
+//Or
+
+function bouncer(arr) {
+  // Don't show a false ID to this bouncer.
+ return arr.filter(Boolean)
+  ;
+}
+
+bouncer([7, "ate", "", false, 9]);
+
 // Return the lowest index at which a value (second argument) 
 // should be inserted into an array (first argument) once it has been sorted. 
 // The returned value should be a number.
@@ -257,25 +267,18 @@ getIndexToIns([40, 60], 50);
 //  all of the letters in "line" are present in "Alien".
 
 function mutation(arr) {
-  let arr0 = arr[0].toLowerCase().split("").join(" ");
-  let arr1 = arr[1].toLowerCase().split("").sort();
-  let answer = false;
+  const stringArr0 = arr[0].toLowerCase().split("");
+  const stringArr1 = arr[1].toLowerCase().split("");
 
-  for (let i = 0 ; i < arr1.length ; i++ ) {
-    if (arr0.includes(arr1[i])) {
-      answer = true
-    }
-
-    else {
+  for(let i = 0 ; i < stringArr1.length ; i++) {
+    if(stringArr0.indexOf(stringArr1[i]) === -1){
       return false
     }
-  };
-  if (answer === true) {
-    return true
-  } 
+  }
+  return true;
 }
 
-mutation(["hello", "Hello"]);
+mutation(["hello", "hey"]);
 
 // Write a function that splits an array (first argument) 
 // into groups the length of size (second argument) 
