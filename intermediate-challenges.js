@@ -265,3 +265,25 @@ function sumFibs(num) {
 }
 
 sumFibs(4);
+
+// Intermediate Algorithm Scripting: Spinal Tap Case
+// Convert a string to spinal case. Spinal case is all-lowercase-words-joined-by-dashes.
+
+function spinalCase(str) {
+  const strSplit = str.split("");
+  const regEx1 = /[A-Z]/;
+  const regEx2 = /[a-z]/;
+  strSplit.forEach((val, i) => {
+    if (regEx1.test(val) === true && regEx2.test(strSplit[i-1]) === true && i !== 0) {
+      strSplit.splice(i, 0, "-");
+    } else if (strSplit[i] === "_" || strSplit[i] === " ") {
+      strSplit[i] = "-"
+    }
+  })
+  // "It's such a fine line between stupid, and clever."
+  // --David St. Hubbins
+
+  return strSplit.join("").toLowerCase();
+}
+
+spinalCase("This Is Spinal Tap");
